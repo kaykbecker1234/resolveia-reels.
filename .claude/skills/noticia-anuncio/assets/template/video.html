@@ -1,0 +1,399 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root{--paper:#E6E8F2;--ink:#1C3752;--acc:#6FB4FF;--acc2:#2F6FB0;--bg1:#123A5C;--bg2:#0A1C2C;--blob:#1A4C78;--leaf:#1C4A75;--muted:#8FA3B8;--red:#E5484D;--wa:#25D366}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#050608}
+body{font-family:'Poppins',sans-serif;color:#fff;position:relative}
+.abs{position:absolute}
+.cx{left:0;right:0;margin-left:auto;margin-right:auto;width:fit-content}
+.serif{font-family:'Playfair Display',serif}
+.scene{position:absolute;inset:0;overflow:hidden}
+#bg{position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 75%,var(--bg1) 0%,var(--bg2) 45%,#050608 100%)}
+.blob{position:absolute;border-radius:50%;background:var(--blob);filter:blur(30px);opacity:.55}
+.leaf{position:absolute;filter:blur(14px);opacity:.6}
+#grain{position:absolute;inset:0;width:1080px;height:1920px;mix-blend-mode:screen;opacity:.07;pointer-events:none}
+.frame{position:absolute;inset:0;pointer-events:none}
+.vt{position:absolute;font-size:22px;letter-spacing:3px;color:rgba(255,255,255,.45);white-space:nowrap;text-transform:uppercase}
+.corner{position:absolute;width:56px;height:56px;border-color:rgba(255,255,255,.35);border-style:solid;border-width:0}
+.dash{border:2.5px dashed currentColor;padding:6px 26px;position:relative}
+.dash::before,.dash::after{content:"";position:absolute;width:12px;height:12px;background:#fff;border:2px solid currentColor}
+.dash::before{left:-8px;top:-8px}.dash::after{right:-8px;bottom:-8px}
+.pill{border:3px solid #fff;border-radius:999px;padding:14px 44px;font-weight:800;font-size:58px;letter-spacing:1px;white-space:nowrap}
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03));border:1.5px solid rgba(255,255,255,.25);border-radius:44px}
+.caret::after{content:"|";margin-left:4px;opacity:.8}
+.bub{position:absolute;padding:18px 26px;border-radius:26px;font-size:34px;line-height:1.3;max-width:600px;color:#111}
+.bub.in{background:#fff;border-top-left-radius:6px;left:30px}
+.bub.out{background:#D9FDD3;border-top-right-radius:6px;right:30px}
+.bub small{display:block;font-size:20px;color:#667;text-align:right;margin-top:4px}
+.lnk{color:#1B7FD1;font-weight:600}
+.tile{width:150px;height:150px;border-radius:22px;display:flex;align-items:flex-end;justify-content:center;padding:10px;font-size:20px;font-weight:600;color:#fff;text-align:center;line-height:1.1}
+</style></head>
+<body>
+<div id="bg"></div>
+<div id="blobs">
+  <div class="blob" id="b1" style="width:520px;height:520px;left:-180px;top:180px"></div>
+  <div class="blob" id="b2" style="width:380px;height:380px;right:-120px;top:1240px"></div>
+  <div class="blob" id="b3" style="width:200px;height:200px;left:120px;top:1500px;opacity:.4"></div>
+  <svg class="leaf" id="l1" style="right:-60px;top:-40px" width="420" height="420" viewBox="0 0 100 100"><path d="M50 95 C20 70 10 40 30 5 C45 25 70 35 90 30 C85 60 75 80 50 95Z" fill="var(--leaf)"/></svg>
+  <svg class="leaf" id="l2" style="left:-80px;bottom:120px" width="360" height="360" viewBox="0 0 100 100"><path d="M50 95 C20 70 10 40 30 5 C45 25 70 35 90 30 C85 60 75 80 50 95Z" fill="var(--leaf)"/></svg>
+</div>
+
+<!-- CENA 1 · Notícia (claro) -->
+<div class="scene" id="s1" style="background:var(--paper);color:var(--ink)">
+  <div class="abs" id="s1grid" style="left:170px;top:600px;width:740px;height:820px;background-image:linear-gradient(color-mix(in srgb,var(--ink) 10%,transparent) 2px,transparent 2px),linear-gradient(90deg,color-mix(in srgb,var(--ink) 10%,transparent) 2px,transparent 2px);background-size:62px 62px"></div>
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920"><path id="s1curve" d="M-40 560 C 260 360, 520 300, 1120 120" stroke="var(--ink)" stroke-width="2.5" fill="none" stroke-dasharray="1400" stroke-dashoffset="1400"/></svg>
+  <svg class="leaf" style="left:-90px;top:-70px;opacity:.75" width="380" height="380" viewBox="0 0 100 100"><path d="M50 95 C20 70 10 40 30 5 C45 25 70 35 90 30 C85 60 75 80 50 95Z" fill="var(--ink)"/></svg>
+  <svg class="leaf" style="right:-90px;bottom:120px;opacity:.75;transform:rotate(160deg)" width="340" height="340" viewBox="0 0 100 100"><path d="M50 95 C20 70 10 40 30 5 C45 25 70 35 90 30 C85 60 75 80 50 95Z" fill="var(--ink)"/></svg>
+  <div class="abs" style="left:110px;top:230px;font-size:22px;letter-spacing:4px;font-weight:500;text-transform:uppercase" data-k="edicao"></div>
+  <div class="abs" style="right:110px;top:215px;text-align:right">
+    <div style="font-size:22px;letter-spacing:3px;font-weight:500" data-k="data_curta"></div>
+    <div style="width:190px;height:42px;margin-top:8px;margin-left:auto;background:repeating-linear-gradient(90deg,var(--ink) 0 3px,transparent 3px 6px,var(--ink) 6px 7px,transparent 7px 11px,var(--ink) 11px 15px,transparent 15px 17px)"></div>
+  </div>
+  <div class="abs cx" id="s1tag" style="top:420px;background:var(--ink);color:#fff;font-weight:700;font-size:34px;letter-spacing:6px;padding:14px 36px;border-radius:999px" data-k="s1.tag"></div>
+  <div class="abs cx" id="s1l1" style="top:560px;font-size:44px;font-weight:500;text-align:center;white-space:nowrap" data-k="s1.l1"></div>
+  <div class="abs cx dash serif" id="s1box" style="top:640px;color:var(--ink)"><span id="s1brand" class="serif" style="font-size:130px;font-weight:900;line-height:1.15;display:inline-block;min-width:10px;white-space:nowrap" data-tw="s1.empresa"></span></div>
+  <svg class="abs" id="s1cur" style="left:0;top:0" width="70" height="70" viewBox="0 0 24 24"><path d="M3 2 L21 11 L13 13 L10 21 Z" fill="var(--ink)" stroke="#fff" stroke-width="1"/></svg>
+  <div class="abs cx" id="s1l2" style="top:880px;font-size:44px;font-weight:500" data-k="s1.l2"></div>
+  <div class="abs cx serif" style="top:950px;display:flex;align-items:center;gap:30px;font-weight:900;line-height:1;white-space:nowrap">
+    <span id="s1a" style="font-size:190px;opacity:.55" data-k="s1.de"></span>
+    <svg id="s1arrow" width="130" height="60" viewBox="0 0 130 60"><path d="M5 30 H115 M90 8 L118 30 L90 52" stroke="var(--ink)" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span id="s1b" style="font-size:250px;display:inline-block;text-align:left" data-k="s1.para"></span>
+  </div>
+  <div class="abs cx serif" id="s1tarja" style="top:1260px;background:var(--ink);color:#fff;font-style:italic;font-weight:700;font-size:46px;letter-spacing:3px;padding:14px 40px;white-space:nowrap" data-k="s1.tarja"></div>
+  <svg class="abs" id="s1cur2" style="left:880px;top:1300px" width="70" height="70" viewBox="0 0 24 24"><path d="M3 2 L21 11 L13 13 L10 21 Z" fill="var(--ink)" stroke="#fff" stroke-width="1"/></svg>
+  <div class="abs cx" id="s1src" style="top:1420px;font-size:28px;color:color-mix(in srgb,var(--ink) 75%,#fff);font-weight:500">Fonte: <span data-k="fonte"></span></div>
+</div>
+
+<div class="frame" id="frame">
+  <div class="vt" style="left:24px;top:960px;transform:rotate(-90deg);transform-origin:0 0" data-k="lateral"></div>
+  <div class="vt" style="right:24px;top:620px;transform:rotate(90deg);transform-origin:100% 0">Fonte: <span data-k="fonte"></span></div>
+  <div class="corner" style="left:70px;top:150px;border-left-width:3px;border-top-width:3px"></div>
+  <div class="corner" style="right:70px;top:150px;border-right-width:3px;border-top-width:3px"></div>
+  <div class="corner" style="left:70px;bottom:260px;border-left-width:3px;border-bottom-width:3px"></div>
+  <div class="corner" style="right:70px;bottom:260px;border-right-width:3px;border-bottom-width:3px"></div>
+</div>
+
+<!-- CENA 2 · Comparação -->
+<div class="scene" id="s2">
+  <div class="abs cx serif" id="s2t" style="top:330px;font-style:italic;font-size:76px;font-weight:500" data-k="s2.titulo"></div>
+  <div class="abs glass" id="s2card" style="left:110px;top:520px;width:860px;height:560px;padding:60px 56px">
+    <div style="font-size:36px;color:var(--muted);font-weight:500" data-k="s2.r1_rotulo"></div>
+    <div style="display:flex;align-items:center;gap:24px;margin-top:18px">
+      <div style="height:70px;width:600px;background:rgba(255,255,255,.08);border-radius:16px;overflow:hidden;flex:none"><div id="s2bar1" style="height:100%;width:0;background:#5B7088;border-radius:16px"></div></div>
+      <div id="s2v1" style="font-size:54px;font-weight:700;color:var(--muted);white-space:nowrap"></div>
+    </div>
+    <div style="font-size:40px;font-weight:700;margin-top:70px" data-k="s2.r2_rotulo"></div>
+    <div style="display:flex;align-items:center;gap:24px;margin-top:18px">
+      <div style="height:70px;width:600px;background:rgba(255,255,255,.08);border-radius:16px;overflow:hidden;flex:none"><div id="s2bar2" style="height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--acc));border-radius:16px;box-shadow:0 0 40px color-mix(in srgb,var(--acc) 60%,transparent)"></div></div>
+      <div id="s2v2" style="font-size:64px;font-weight:800;color:var(--acc);white-space:nowrap"></div>
+    </div>
+  </div>
+  <div class="abs cx" id="s2q1" style="top:1160px;font-size:46px;font-weight:500;letter-spacing:4px" data-k="s2.q1"></div>
+  <div class="abs cx pill serif" id="s2q2" style="top:1235px;font-size:120px;font-weight:900;padding:6px 70px;border-width:4px" data-k="s2.q2"></div>
+  <div class="abs cx" id="s2foot" style="top:1460px;width:820px;text-align:center;font-size:24px;color:rgba(255,255,255,.5);line-height:1.4" data-k="s2.nota"></div>
+</div>
+
+<!-- CENA 3 · Loop aberto -->
+<div class="scene" id="s3">
+  <div class="abs cx" id="s3a" style="top:740px;font-size:56px;font-weight:300;letter-spacing:2px" data-k="s3.a"></div>
+  <div class="abs cx serif" id="s3b" style="top:850px;font-size:116px;font-weight:900;white-space:nowrap" data-k="s3.b"></div>
+  <div class="abs cx serif" id="s3c" style="top:1080px;font-size:46px;font-style:italic;color:rgba(255,255,255,.7)" data-k="s3.c"></div>
+</div>
+
+<!-- CENA 4 · Antes -->
+<div class="scene" id="s4">
+  <div class="abs cx" style="top:250px;display:flex;align-items:center;gap:26px" id="s4h">
+    <div class="dash serif" style="font-size:84px;font-weight:900;font-style:italic;color:#fff;padding:0 30px" data-k="s4.titulo"></div>
+    <div style="font-size:44px;font-weight:300" data-k="s4.sub"></div>
+  </div>
+  <div class="abs" id="s4phone" style="left:300px;top:450px;width:480px;height:860px;border-radius:64px;background:#0b0d10;border:10px solid #2A2F36;box-shadow:0 40px 80px rgba(0,0,0,.6);overflow:hidden"><div style="position:absolute;inset:0;filter:grayscale(.6)">
+    <div style="height:150px;background:#1F2C34;padding:58px 28px 0;display:flex;gap:18px;align-items:center">
+      <div style="width:64px;height:64px;border-radius:50%;background:#55606B;flex:none"></div>
+      <div><div style="font-size:30px;font-weight:600" data-k="s4.contato"></div><div style="font-size:20px;color:#9AA" data-k="s4.visto"></div></div>
+    </div>
+    <div id="s4list" style="position:absolute;top:150px;left:0;right:0;bottom:0;background:#0E1A20">
+      <div class="abs" id="s4closed" style="left:40px;right:40px;top:540px;text-align:center;background:rgba(255,255,255,.1);border-radius:20px;padding:16px;font-size:26px;color:#cfd8dc" data-k="s4.aviso"></div>
+    </div>
+  </div></div>
+  <div class="abs" id="s4clock" style="left:720px;top:420px;background:var(--red);color:#fff;font-weight:700;font-size:42px;padding:10px 26px;border-radius:999px;box-shadow:0 10px 30px rgba(229,72,77,.5)"></div>
+  <div class="abs cx pill" id="s4p1" style="top:1370px;font-size:44px" data-k="s4.p1"></div>
+  <div class="abs cx pill" id="s4p2" style="top:1480px;font-size:40px;border-color:var(--red)" data-k="s4.p2"></div>
+</div>
+
+<!-- CENA 5 · História -->
+<div class="scene" id="s5">
+  <div class="abs cx serif" id="s5t" style="top:290px;font-size:84px;font-style:italic;font-weight:500" data-k="s5.titulo"></div>
+  <div class="abs glass" id="s5card" style="left:110px;top:470px;width:860px;height:470px;padding:40px">
+    <div style="display:flex;gap:20px;align-items:center">
+      <div style="width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#F3A6B5,#C86B85)"></div>
+      <div><div style="font-size:34px;font-weight:600" data-k="s5.contato"></div><div style="font-size:22px;color:var(--muted)" id="s5status">online</div></div>
+    </div>
+    <div class="bub out" id="s5m1" style="top:170px;right:40px;font-size:34px;max-width:640px"><span data-k="s5.msg"></span><small><span data-k="s5.hora"></span> ✓✓</small></div>
+    <div class="abs" id="s5wait" style="left:40px;top:370px;font-size:28px;color:var(--muted)">sem resposta há <b id="s5timer" style="color:#fff">00:00</b></div>
+  </div>
+  <div class="abs cx" id="s5a" style="top:1030px;font-size:62px;font-weight:300;white-space:nowrap" data-k="s5.a"></div>
+  <div class="abs cx" id="s5b" style="top:1150px;font-size:54px;font-weight:500;text-align:center;line-height:1.3" data-k="s5.b"></div>
+  <div class="abs cx pill serif" id="s5c" style="top:1310px;font-size:110px;font-weight:900;padding:0 60px;background:#fff;color:var(--bg2)" data-k="s5.c"></div>
+</div>
+
+<!-- CENA 6 · Revelação -->
+<div class="scene" id="s6">
+  <div class="abs cx" id="s6a" style="top:640px;font-size:54px;font-weight:300;white-space:nowrap" data-k="s6.a"></div>
+  <div class="abs cx" id="s6b" style="top:730px;font-size:118px;font-weight:800;line-height:1.02;text-align:center;letter-spacing:-2px;white-space:nowrap"><span data-k="s6.b1"></span><br><span style="color:var(--acc)" data-k="s6.b2"></span></div>
+  <div class="abs cx serif" id="s6c" style="top:1000px;font-size:58px;font-style:italic" data-k="s6.c"></div>
+  <div class="abs" id="s6chat" style="left:110px;top:430px;width:860px;height:860px;border-radius:44px;overflow:hidden;background:#0E1A20;border:1.5px solid rgba(255,255,255,.2);box-shadow:0 30px 80px rgba(0,0,0,.5)">
+    <div style="height:120px;background:#1F2C34;padding:0 32px;display:flex;gap:20px;align-items:center">
+      <div style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc2));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px">IA</div>
+      <div><div style="font-size:32px;font-weight:600" data-k="s6.contato"></div><div style="font-size:22px;color:var(--wa)" id="s6status">online</div></div>
+    </div>
+    <div class="bub out" id="s6m1" style="top:150px;font-size:32px"><span data-k="s6.m1"></span><small><span data-k="s6.hora"></span> ✓✓</small></div>
+    <div class="bub in" id="s6m2" style="top:290px;font-size:32px;max-width:720px"><span data-k="s6.m2"></span>
+      <div style="display:flex;gap:16px;margin-top:16px" id="s6tiles"></div><small data-k="s6.hora"></small></div>
+    <div class="bub out" id="s6m3" style="top:610px;font-size:32px"><span data-k="s6.m3"></span><small><span data-k="s6.hora"></span> ✓✓</small></div>
+    <div class="bub in" id="s6m4" style="top:700px;font-size:30px;max-width:720px"><span data-k="s6.m4"></span><small data-k="s6.hora"></small></div>
+  </div>
+  <div class="abs" id="s6badge" style="left:620px;top:395px;background:var(--wa);color:#05210f;font-weight:700;font-size:32px;padding:10px 26px;border-radius:999px;box-shadow:0 10px 30px rgba(37,211,102,.45);white-space:nowrap" data-k="s6.badge"></div>
+  <div class="abs cx" id="s6lbl" style="top:1340px;font-size:40px;font-weight:300" data-k="s6.rotulo"></div>
+  <div class="abs cx pill" id="s6p0" style="top:1410px"></div>
+  <div class="abs cx pill" id="s6p1" style="top:1410px"></div>
+  <div class="abs cx pill" id="s6p2" style="top:1410px"></div>
+  <div class="abs cx pill" id="s6p3" style="top:1410px"></div>
+</div>
+
+<!-- CENA 7 · Bastidor -->
+<div class="scene" id="s7">
+  <div class="abs cx" id="s7t" style="top:300px;font-size:52px;font-weight:500;white-space:nowrap" data-tw="s7.t"></div>
+  <div class="abs" id="s7st1" style="left:130px;top:430px;width:380px;text-align:center">
+    <div class="serif" style="font-size:160px;font-weight:900;line-height:1.19;color:var(--acc);white-space:nowrap" data-k="s7.st1_num"></div>
+    <div style="font-size:40px;font-weight:700;letter-spacing:2px" data-k="s7.st1_a"></div><div style="font-size:30px;color:var(--muted)" data-k="s7.st1_b"></div>
+  </div>
+  <div class="abs" id="s7st2" style="right:90px;top:430px;width:500px;text-align:center">
+    <div class="serif" style="font-size:160px;font-weight:900;line-height:1.19;color:var(--acc);white-space:nowrap" id="s7n"></div>
+    <div style="font-size:40px;font-weight:700;letter-spacing:2px" data-k="s7.st2_a"></div><div style="font-size:30px;color:var(--muted)" data-k="s7.st2_b"></div>
+  </div>
+  <div class="abs" id="s7grid" style="left:150px;top:860px;width:780px;display:grid;grid-template-columns:repeat(8,1fr);gap:14px"></div>
+  <div class="abs cx" id="s7k" style="top:820px;font-size:34px;letter-spacing:3px;color:var(--muted);font-weight:500;white-space:nowrap" data-k="s7.k"></div>
+  <div class="abs glass" id="s7card" style="left:90px;top:900px;width:900px;padding:56px 40px;text-align:center">
+    <div style="font-size:54px;font-weight:500;line-height:1.3" data-k="s7.card_a"></div>
+    <div class="serif" style="font-size:124px;font-weight:900;color:var(--acc);margin-top:10px;line-height:1.1;white-space:nowrap" data-k="s7.card_b"></div>
+  </div>
+</div>
+
+<!-- CENA 8 · Espelho -->
+<div class="scene" id="s8">
+  <div class="abs cx" id="s8a" style="top:250px;font-size:52px;font-weight:300" data-k="s8.a"></div>
+  <div class="abs cx serif" id="s8b" style="top:320px;font-size:128px;font-weight:900;white-space:nowrap" data-k="s8.b"></div>
+  <div class="abs" id="s8n1" style="left:130px;top:560px;width:820px"></div>
+  <div class="abs" id="s8badge" style="left:0;right:0;top:1040px;text-align:center">
+    <span id="s8cnt" style="display:inline-block;background:var(--red);font-weight:800;font-size:80px;padding:4px 44px;border-radius:999px;box-shadow:0 10px 40px rgba(229,72,77,.5)">0</span>
+    <div style="font-size:40px;margin-top:16px;font-weight:500" data-k="s8.badge_txt"></div>
+  </div>
+  <div class="abs cx" id="s8q1" style="top:1260px;font-size:58px;font-weight:300;white-space:nowrap" data-k="s8.q1"></div>
+  <div class="abs cx" id="s8q2" style="top:1350px;font-size:58px;font-weight:500;white-space:nowrap"><span data-k="s8.q2a"></span> <span class="serif" style="font-weight:900;font-size:84px;color:var(--red)" data-k="s8.q2b"></span></div>
+</div>
+
+<!-- CENA 9 · CTA -->
+<div class="scene" id="s9">
+  <div class="abs cx serif" id="s9a" style="top:330px;font-size:62px;font-style:italic;text-align:center;line-height:1.25;white-space:nowrap" data-k="s9.a"></div>
+  <div class="abs cx" id="s9b" style="top:640px;font-size:110px;font-weight:800;letter-spacing:8px" data-k="s9.b"></div>
+  <div class="abs cx" id="s9c" style="top:740px;font-size:270px;font-weight:800;letter-spacing:-6px;color:var(--acc);text-shadow:0 0 60px color-mix(in srgb,var(--acc) 45%,transparent)" data-k="s9.c"></div>
+  <div class="abs glass" id="s9in" style="left:120px;top:1160px;width:840px;height:130px;border-radius:999px;display:flex;align-items:center;padding:0 22px 0 30px;gap:22px">
+    <div style="width:80px;height:80px;border-radius:50%;background:#5B7088;flex:none"></div>
+    <div style="flex:1;font-size:40px;font-weight:600;white-space:nowrap;overflow:hidden"><span id="s9typed" data-tw="s9.c"></span><span id="s9ph" style="color:rgba(255,255,255,.45);font-weight:400">Adicione um comentário…</span></div>
+    <div id="s9send" style="width:96px;height:96px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;flex:none"><svg width="46" height="46" viewBox="0 0 24 24"><path d="M3 20 L21 12 L3 4 L5 12 Z" fill="#06223D"/></svg></div>
+  </div>
+  <svg class="abs" id="s9cur" style="left:0;top:0" width="80" height="80" viewBox="0 0 24 24"><path d="M3 2 L21 11 L13 13 L10 21 Z" fill="#fff" stroke="#06223D" stroke-width="1"/></svg>
+  <div class="abs cx" id="s9d" style="top:1350px;font-size:36px;color:rgba(255,255,255,.75);text-align:center;line-height:1.4" data-k="s9.d"></div>
+</div>
+
+<canvas id="grain" width="270" height="480"></canvas>
+<div class="abs" id="flash" style="inset:0;background:#fff;opacity:0"></div>
+
+<script>
+// ===== Conteúdo: window.DATA vem do roteiro.json (bloco "tela"); DEFAULTS cobre os textos genéricos =====
+const THEMES={
+  navy:     {paper:'#E6E8F2',ink:'#1C3752',acc:'#6FB4FF',acc2:'#2F6FB0',bg1:'#123A5C',bg2:'#0A1C2C',blob:'#1A4C78',leaf:'#1C4A75'},
+  esmeralda:{paper:'#E7EFEA',ink:'#173F35',acc:'#5EE6A8',acc2:'#2C9C6A',bg1:'#12443A',bg2:'#0A1F1B',blob:'#1B5E4E',leaf:'#1F5A4B'},
+  vinho:    {paper:'#F1E7E7',ink:'#4A1C26',acc:'#FF8FA3',acc2:'#B0425A',bg1:'#4A1A26',bg2:'#1F0B10',blob:'#6B2433',leaf:'#6A2232'},
+  roxo:     {paper:'#ECE8F4',ink:'#2E2150',acc:'#B69CFF',acc2:'#6B4FC8',bg1:'#2E2158',bg2:'#120C24',blob:'#45327E',leaf:'#3F2F75'}};
+const DEFAULTS={tema:'navy',edicao:'Edição · IA no atendimento',lateral:'IA no atendimento · case real',
+  s1:{tag:'SAIU NA MÍDIA',l2:'foi de'},s2:{titulo:'E o mais curioso:',nota:''},
+  s3:{a:'O que mudou foi',b:'UMA COISA SÓ.',c:'mas antes, veja como era…'},
+  s4:{titulo:'ANTES',sub:'era assim:',contato:'Loja · balcão',visto:'visto por último às 14:02',aviso:'Atendimento: seg–sex, 9h às 18h',hora_ini:'14:02',hora_fim:'19:40',p1:'HORAS PRA RESPONDER',p2:'FORA DO HORÁRIO: NINGUÉM'},
+  s5:{titulo:'Agora imagina…',hora:'21:14',a:'Ela não vai esperar.',b:'Ela compra de quem<br>responder',c:'PRIMEIRO.'},
+  s6:{a:'Foi aí que entrou uma',b1:'INTELIGÊNCIA',b2:'ARTIFICIAL',c:'no WhatsApp.',contato:'Loja · Atendimento',hora:'21:14',badge:'respondeu em 2s',rotulo:'Em segundos, ela:'},
+  s7:{t:'Mas não foi só ligar e pronto.',k:'O DETALHE QUE QUASE TODO MUNDO ERRA:',card_a:'IA que não conhece<br>o seu negócio',card_b:'NÃO VENDE.'},
+  s8:{a:'Agora pensa no',b:'SEU WhatsApp.',notifs:['Oi, ainda tem disponível?','Qual o valor?','Vocês entregam hoje?'],contagem:27,badge_txt:'mensagens sem resposta hoje',q1:'Quantas viraram venda…',q2a:'do seu',q2b:'CONCORRENTE?'},
+  s9:{a:'Quer ver como isso funcionaria<br>no <b>seu</b> WhatsApp?',b:'COMENTA',c:'QUERO',d:'e te mostro como colocar<br>atendimento com IA no seu WhatsApp'}};
+function merge(a,b){const o=Array.isArray(a)?[...a]:{...a};for(const k in b){o[k]=(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&a&&typeof a[k]==='object')?merge(a[k],b[k]):b[k]}return o}
+const D=merge(DEFAULTS,window.DATA||{});
+const get=p=>p.split('.').reduce((o,k)=>o==null?undefined:o[k],D);
+const th=THEMES[D.tema]||THEMES.navy;for(const k in th)document.documentElement.style.setProperty('--'+k,th[k]);
+document.querySelectorAll('[data-k]').forEach(el=>{const v=get(el.dataset.k);el.innerHTML=v==null?'⟨'+el.dataset.k+'⟩':v});
+document.querySelectorAll('[data-tw]').forEach(el=>{const v=get(el.dataset.tw);el.dataset.full=v==null?'⟨'+el.dataset.tw+'⟩':String(v).replace(/<[^>]+>/g,'')});
+// listas
+(D.s4.msgs||[]).slice(0,4).forEach(([m,h],i)=>{const d=document.createElement('div');d.className='bub in';d.id='s4m'+i;d.style.cssText=`top:${[30,170,280,390][i]}px;font-size:28px;max-width:400px`;d.innerHTML=`${m}<small>${h}</small>`;document.getElementById('s4list').appendChild(d)});
+const tileBg=['linear-gradient(160deg,#F7B267,#F4845F)','linear-gradient(160deg,#6FB4FF,#2F6FB0)','linear-gradient(160deg,#7DDBA3,#2C9C6A)'];
+(D.s6.tiles||[]).slice(0,3).forEach((t,i)=>{const d=document.createElement('div');d.className='tile';d.style.background=tileBg[i];d.textContent=t;document.getElementById('s6tiles').appendChild(d)});
+(D.s6.pills||[]).slice(0,4).forEach((t,i)=>{const el=document.getElementById('s6p'+i);el.textContent=t;if(t.length>18)el.style.fontSize=Math.max(38,58-(t.length-18)*1.6)+'px'});
+const numOf=s=>{const m=String(s).match(/^\s*(\d+(?:[.,]\d+)?)(.*)$/);return m?{n:parseFloat(m[1].replace(',','.')),suf:m[2]}:null};
+
+// ===== Motor de animação (determinístico: render(t) desenha o quadro t) =====
+const E={lin:t=>t,out:t=>1-Math.pow(1-t,3),in:t=>t*t*t,io:t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,
+  back:t=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)}};
+const $=s=>document.querySelector(s);
+const P=['o','x','y','s','r','rx','ry','b'],DF={o:1,x:0,y:0,s:1,r:0,rx:0,ry:0,b:0};
+const tracks=[],fns=[];
+function A(sel,kf){document.querySelectorAll(sel).forEach(el=>tracks.push({el,kf}))}
+function val(kf,t,p){let prev=null;for(const k of kf){if(k[p]===undefined)continue;if(k.t<=t){prev=k;continue}
+  if(!prev)return k[p];const u=(t-prev.t)/(k.t-prev.t);return prev[p]+(k[p]-prev[p])*E[k.e||'out'](u)}
+  return prev?prev[p]:DF[p]}
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+function TW(sel,t0,dur,caret=true){const el=$(sel);fns.push(t=>{const f=el.dataset.full;const n=Math.round(f.length*cl((t-t0)/dur));el.textContent=f.slice(0,n);el.classList.toggle('caret',caret&&t>=t0&&t<t0+dur+.4)})}
+function CN(sel,t0,t1,a,b,fmt,e='out'){const el=$(sel);fns.push(t=>{el.textContent=fmt(a+(b-a)*E[e](cl((t-t0)/(t1-t0))))})}
+function IN(sel,t,o={}){const d=o.d||.45;A(sel,[{t:t,o:0,y:o.y??40,x:o.x??0,s:o.s??1,b:o.b??8},{t:t+d,o:1,y:0,x:0,s:1,b:0,e:o.e||'out'}])}
+
+// ===== Marcas: tempo-base de cada trecho da narração (o pipeline casa cada uma com a fala) =====
+window.MARKS={s1:0,s1_de:2.1,s1_para:2.4,s2:5.2,s2_q:8.1,s3:10.5,s3_c:12.1,s4:14.1,s4_p1:17.9,s4_p2:18.7,
+  s5:20.6,s5_a:22.9,s5_b:23.9,s6:26.5,s6_chat:29.3,s6_p1:30.61,s6_p2:31.24,s6_p3:33.03,s6_p4:33.86,
+  s7:35.6,s7_st1:36.5,s7_st2:36.9,s7_k:39.6,s7_card:40.1,s8:43.5,s8_badge:45.6,s8_q1:46.8,s8_q2:47.8,
+  s9:50.7,s9_b:51.6,s9_c:52.3};
+window.SCENE_STARTS=['s2','s3','s4','s5','s6','s7','s8','s9'];
+window.END=58.5;window.TAIL_FROM=53.2;
+window.PREVIEW_AT=[3.8,8.8,11.6,19.2,25.2,28.0,32.5,34.4,38.8,42.0,48.4,56.0];
+
+// fundo
+fns.push(t=>{
+  $('#b1').style.transform=`translate(${Math.sin(t*.35)*40+(t>26?120:0)}px,${Math.cos(t*.3)*50}px)`;
+  $('#b2').style.transform=`translate(${Math.cos(t*.4)*50}px,${Math.sin(t*.25)*60-(t>35?300:0)}px)`;
+  $('#b3').style.transform=`translate(${Math.sin(t*.5)*30}px,${Math.cos(t*.45)*30}px)`;
+  $('#l1').style.transform=`rotate(${Math.sin(t*.3)*8}deg) translateY(${Math.sin(t*.2)*30}px)`;
+  $('#l2').style.transform=`rotate(${150+Math.cos(t*.3)*8}deg)`;});
+const gc=$('#grain').getContext('2d'),gi=gc.createImageData(270,480);
+fns.push(t=>{let s=Math.floor(t*30)*9301+49297;for(let i=0;i<gi.data.length;i+=4){s=(s*1103515245+12345)&0x7fffffff;const v=s>>23;gi.data[i]=gi.data[i+1]=gi.data[i+2]=v;gi.data[i+3]=255}gc.putImageData(gi,0,0);
+  $('#grain').style.opacity=(t>10.2&&t<13.8)||t>50.3?.13:.06});
+
+// janelas das cenas
+A('#s1',[{t:4.7,y:0,b:0},{t:5.15,y:-1920,b:6,e:'io'}]);
+A('#frame',[{t:4.9,o:0},{t:5.4,o:1}]);
+A('#s2',[{t:0,o:0},{t:4.75,o:0,y:500},{t:4.76,o:1},{t:5.2,y:0,e:'io'},{t:10.0,x:0,b:0},{t:10.35,x:-1080,b:10,e:'io'}]);
+A('#s3',[{t:0,o:0},{t:10.0,o:0,x:1080},{t:10.01,o:1},{t:10.35,x:0,e:'io'},{t:13.5,s:1,b:0,o:1},{t:13.85,s:1.25,b:20,o:0,e:'in'}]);
+A('#s4',[{t:0,o:0},{t:13.6,o:0,s:.85,b:10},{t:14.0,o:1,s:1,b:0},{t:20.0,y:0,b:0},{t:20.4,y:-1920,b:10,e:'io'}]);
+A('#s5',[{t:0,o:0},{t:20.0,o:0,y:1920},{t:20.01,o:1},{t:20.4,y:0,e:'io'},{t:26.1,o:1,s:1,b:0},{t:26.35,o:0,s:1.1,b:16,e:'in'}]);
+A('#flash',[{t:26.2,o:0},{t:26.3,o:.55,e:'lin'},{t:26.6,o:0}]);
+A('#s6',[{t:0,o:0},{t:26.3,o:0},{t:26.31,o:1},{t:35.0,y:0,b:0},{t:35.4,y:-1920,b:10,e:'io'}]);
+A('#s7',[{t:0,o:0},{t:35.0,o:0,y:1920},{t:35.01,o:1},{t:35.4,y:0,e:'io'},{t:43.0,x:0,b:0},{t:43.35,x:-1080,b:10,e:'io'}]);
+A('#s8',[{t:0,o:0},{t:43.0,o:0,x:1080},{t:43.01,o:1},{t:43.35,x:0,e:'io'},{t:50.0,o:1,b:0,s:1},{t:50.35,o:0,b:24,s:.92,e:'in'}]);
+A('#s9',[{t:0,o:0},{t:50.3,o:0},{t:50.6,o:1}]);
+
+// S1
+A('#s1grid',[{t:0,o:0},{t:.8,o:1}]);
+fns.push(t=>{$('#s1curve').style.strokeDashoffset=1400*(1-E.io(cl((t-.3)/1.6)))});
+IN('#s1tag',.15,{s:.6,e:'back',d:.4});IN('#s1l1',.5);
+A('#s1box',[{t:0,o:0},{t:.8,o:1}]);TW('#s1brand',.85,.7);
+A('#s1cur',[{t:0,o:0,x:900,y:900},{t:.6,o:1},{t:1.3,x:840,y:760,e:'io'},{t:1.9,o:1},{t:2.2,o:0}]);
+IN('#s1l2',1.55);
+A('#s1a',[{t:0,o:0},{t:1.8,o:0,y:30},{t:2.1,o:1,y:0}]);
+A('#s1arrow',[{t:0,o:0},{t:2.1,o:0,x:-30},{t:2.35,o:1,x:0}]);
+A('#s1b',[{t:0,o:0},{t:2.3,o:0,s:.6},{t:2.6,o:1,s:1,e:'back'},{t:3.55,s:1},{t:3.75,s:1.12,e:'out'},{t:3.95,s:1,e:'io'}]);
+(()=>{const a=numOf(D.s1.de),b=numOf(D.s1.para);if(a&&b&&a.suf.trim()===b.suf.trim()){const dec=/[.,]/.test(String(D.s1.para))?1:0;CN('#s1b',2.4,3.6,a.n,b.n,v=>v.toFixed(dec).replace('.',',')+b.suf)}})();
+A('#s1tarja',[{t:0,o:0},{t:3.6,o:0,x:-60},{t:3.95,o:1,x:0}]);
+A('#s1cur2',[{t:0,o:0},{t:3.8,o:0,x:120,y:120},{t:4.2,o:1,x:0,y:0,e:'io'}]);
+IN('#s1src',3.9,{y:20});
+// S2
+IN('#s2t',5.3);
+A('#s2card',[{t:0,o:0},{t:5.6,o:0,y:80,ry:-18,s:.92},{t:6.1,o:1,y:0,ry:0,s:1}]);
+(()=>{const v1=+D.s2.r1_valor||0,v2=+D.s2.r2_valor||0,mx=Math.max(v1,v2)||1;const t1=String(D.s2.r1_txt??''),t2=String(D.s2.r2_txt??'');
+  fns.push(t=>{const u=E.out(cl((t-6.3)/1.0));$('#s2bar1').style.width=(u*v1/mx*100)+'%';$('#s2v1').textContent=u>=1?t1:t1.replace(/[\d.,]+/,m=>Math.round(u*v1));
+    const w=E.out(cl((t-6.9)/1.3));$('#s2bar2').style.width=(w*v2/mx*100)+'%';$('#s2v2').textContent=w>=1?t2:t2.replace(/[\d.,]+/,m=>Math.round(w*v2))})})();
+IN('#s2q1',8.1);
+A('#s2q2',[{t:0,o:0},{t:8.4,o:0,s:1.6,b:12},{t:8.75,o:1,s:1,b:0,e:'out'}]);
+IN('#s2foot',8.8,{y:10});
+// S3
+IN('#s3a',10.5,{y:20});
+A('#s3b',[{t:0,o:0},{t:11.0,o:0,s:1.15,b:20},{t:11.35,o:1,s:1,b:0},{t:11.45,o:.35,e:'lin'},{t:11.5,o:1,e:'lin'},{t:11.6,o:.5,e:'lin'},{t:11.65,o:1,e:'lin'}]);
+IN('#s3c',12.1,{y:16});
+// S4
+IN('#s4h',14.1);
+A('#s4phone',[{t:0,o:0},{t:14.2,o:0,x:-420,y:520,r:-30,ry:40,s:.7},{t:15.0,o:1,x:0,y:0,r:-3,ry:-10,s:1,e:'out'},{t:20,r:-3,ry:-10}]);
+[15.3,16.0,16.7,17.3].forEach((t,i)=>A('#s4m'+i,[{t:0,o:0},{t,o:0,y:30,s:.9},{t:t+.3,o:1,y:0,s:1,e:'back'}]));
+IN('#s4closed',18.4,{y:20});
+A('#s4clock',[{t:0,o:0},{t:15.0,o:0,s:.5},{t:15.3,o:1,s:1,e:'back'}]);
+(()=>{const hm=s=>{const[h,m]=String(s).split(':').map(Number);return h*60+m};const a=hm(D.s4.hora_ini),b=hm(D.s4.hora_fim);
+  fns.push(t=>{const m=a+Math.round(E.io(cl((t-15.2)/3.6))*(b-a));$('#s4clock').textContent=String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')})})();
+A('#s4p1',[{t:0,o:0},{t:17.9,o:0,x:300,b:10},{t:18.25,o:1,x:0,b:0}]);
+A('#s4p2',[{t:0,o:0},{t:18.7,o:0,x:-300,b:10},{t:19.05,o:1,x:0,b:0}]);
+// S5
+IN('#s5t',20.6);
+A('#s5card',[{t:0,o:0},{t:21.0,o:0,y:80,s:.94},{t:21.4,o:1,y:0,s:1}]);
+A('#s5m1',[{t:0,o:0},{t:21.6,o:0,y:30,s:.9},{t:21.95,o:1,y:0,s:1,e:'back'}]);
+IN('#s5wait',22.2,{y:10});
+fns.push(t=>{const sec=Math.floor(cl((t-22.2)/3.9)*2820);$('#s5timer').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');
+  $('#s5status').textContent=t>22.6?'visto às '+D.s5.hora:'online'});
+IN('#s5a',22.9);IN('#s5b',23.9);
+A('#s5c',[{t:0,o:0},{t:24.6,o:0,s:1.5,b:10},{t:24.95,o:1,s:1,b:0}]);
+// S6
+A('#s6a',[{t:0,o:0},{t:26.5,o:0,y:20,b:8},{t:26.95,o:1,y:0,b:0},{t:29.0,o:1,y:0},{t:29.4,o:0,y:-200,e:'in'}]);
+A('#s6b',[{t:0,o:0},{t:26.8,o:0,x:500,b:30},{t:27.25,o:1,x:0,b:0},{t:29.0,o:1,y:0,s:1},{t:29.4,o:0,y:-200,s:.8,e:'in'}]);
+A('#s6c',[{t:0,o:0},{t:27.6,o:0,y:20,b:8},{t:28.05,o:1,y:0,b:0},{t:29.0,o:1,y:0},{t:29.4,o:0,y:-200,e:'in'}]);
+A('#s6chat',[{t:0,o:0},{t:29.3,o:0,y:700,rx:25},{t:29.85,o:1,y:0,rx:0}]);
+[['#s6m1',30.0],['#s6m2',30.6],['#s6m3',31.5],['#s6m4',32.0]].forEach(([s,t])=>A(s,[{t:0,o:0},{t,o:0,y:30},{t:t+.3,o:1,y:0,e:'back'}]));
+fns.push(t=>{$('#s6status').textContent=(t>30.3&&t<30.6)||(t>31.8&&t<32.0)?'digitando…':'online'});
+A('#s6badge',[{t:0,o:0},{t:30.9,o:0,s:.4},{t:31.2,o:1,s:1,e:'back'}]);
+IN('#s6lbl',30.34,{y:15});
+const PT=[30.61,31.24,33.03,33.86];PT.forEach((t,i)=>{const k=[{t:0,o:0},{t:t,o:0,x:700,b:16},{t:t+.3,o:1,x:0,b:0,e:'out'}];if(i<3){const n=PT[i+1];k.push({t:n-.12,o:1,x:0,b:0},{t:n+.18,o:0,x:-700,b:16,e:'in'})}A('#s6p'+i,k)});
+// S7
+TW('#s7t',35.6,.9);
+A('#s7st1',[{t:0,o:0},{t:36.5,o:0,y:60,s:.8},{t:36.9,o:1,y:0,s:1,e:'back'},{t:39.4,o:1,b:0},{t:39.8,o:.15,b:8}]);
+A('#s7st2',[{t:0,o:0},{t:36.9,o:0,y:60,s:.8},{t:37.3,o:1,y:0,s:1,e:'back'},{t:39.4,o:1,b:0},{t:39.8,o:.15,b:8}]);
+(()=>{const n=+D.s7.st2_num,txt=String(D.s7.st2_txt??D.s7.st2_num);const unit=/k$/i.test(txt)?[1e3,'k']:/ mi$/.test(txt)?[1e6,' mi']:/ mil$/.test(txt)?[1e3,' mil']:null;if(n>0)CN('#s7n',37.1,38.6,0,n,v=>v>=n-.5?txt:unit?Math.round(v/unit[0])+unit[1]:Math.round(v).toLocaleString('pt-BR'));else $('#s7n').textContent=txt})();
+(()=>{const g=$('#s7grid');for(let i=0;i<32;i++){const d=document.createElement('div');d.style.cssText=`aspect-ratio:1;border-radius:14px;border:2px solid rgba(255,255,255,.25);background:color-mix(in srgb,var(--acc) ${[55,70,35,100,45][i%5]}%,var(--bg2))`;d.id='g'+i;g.appendChild(d);
+  const t=37.2+i*.045;A('#g'+i,[{t:0,o:0},{t:t,o:0,s:.3},{t:t+.25,o:1,s:1,e:'back'}])}})();
+A('#s7grid',[{t:39.4,o:1,b:0,s:1},{t:39.8,o:.12,b:8,s:.95}]);
+A('#s7k',[{t:0,o:0},{t:39.6,o:0,y:15,b:8},{t:40.0,o:1,y:0,b:0}]);
+A('#s7card',[{t:0,o:0},{t:40.1,o:0,y:120,s:.9},{t:40.55,o:1,y:0,s:1}]);
+// S8
+IN('#s8a',43.5,{y:20});
+A('#s8b',[{t:0,o:0},{t:43.7,o:0,s:1.3,b:14},{t:44.05,o:1,s:1,b:0}]);
+(D.s8.notifs||[]).slice(0,3).forEach((m,i)=>{const d=document.createElement('div');d.className='glass';d.id='s8m'+i;d.style.cssText=`position:absolute;left:0;width:820px;top:${i*140}px;height:120px;border-radius:30px;display:flex;align-items:center;gap:22px;padding:0 28px`;
+  d.innerHTML=`<div style="width:70px;height:70px;border-radius:18px;background:var(--wa);display:flex;align-items:center;justify-content:center;flex:none"><svg width="40" height="40" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="#fff"/></svg></div><div style="flex:1"><div style="font-size:24px;color:var(--muted)">WhatsApp · Cliente</div><div style="font-size:34px;font-weight:500">${m}</div></div><div style="font-size:22px;color:var(--muted)">agora</div>`;$('#s8n1').appendChild(d);
+  const t=44.4+i*.45;const k=[{t:0,o:0},{t:t,o:0,y:-60,s:.9},{t:t+.35,o:1,y:0,s:1,e:'back'}];if(i===2)k.push({t:47.9,x:0,o:1,r:0},{t:48.5,x:1100,o:0,r:8,e:'in'});A('#s8m'+i,k)});
+A('#s8badge',[{t:0,o:0},{t:45.6,o:0,s:.5},{t:45.95,o:1,s:1,e:'back'}]);
+CN('#s8cnt',45.7,47.0,0,+D.s8.contagem||27,v=>Math.round(v));
+IN('#s8q1',46.8);
+A('#s8q2',[{t:0,o:0},{t:47.8,o:0,x:400,b:20},{t:48.2,o:1,x:0,b:0}]);
+// S9
+IN('#s9a',50.7);
+A('#s9b',[{t:0,o:0},{t:51.6,o:0},{t:51.7,o:1,e:'lin'},{t:51.78,o:.3,e:'lin'},{t:51.86,o:1,e:'lin'},{t:51.94,o:.5,e:'lin'},{t:52.0,o:1,e:'lin'}]);
+A('#s9c',[{t:0,o:0},{t:52.3,o:0,x:700,b:40},{t:52.75,o:1,x:0,b:0,e:'out'},{t:53.1,s:1},{t:53.3,s:1.06},{t:53.5,s:1,e:'io'}]);
+A('#s9in',[{t:0,o:0},{t:53.2,o:0,y:60},{t:53.6,o:1,y:0}]);
+A('#s9cur',[{t:0,o:0},{t:53.6,o:0,x:900,y:1600},{t:54.1,o:1,x:520,y:1240,e:'io'},{t:55.6,x:520,y:1240},{t:56.0,x:880,y:1240,e:'io'},{t:56.25,s:1},{t:56.35,s:.8},{t:56.5,s:1}]);
+TW('#s9typed',54.3,.9);
+fns.push(t=>{$('#s9ph').style.display=t>54.3?'none':'inline'});
+A('#s9send',[{t:56.25,s:1},{t:56.4,s:.85},{t:56.65,s:1.15,e:'back'},{t:56.9,s:1}]);
+IN('#s9d',54.8,{y:15});
+
+// ===== Efeitos sonoros no tempo-base: [tempo, efeito, ganho] =====
+const R=(t0,n,dt,name,g)=>Array.from({length:n},(_,i)=>[+(t0+i*dt).toFixed(3),name,g]);
+window.SFX=[[0.15,'pop',.5],...R(0.85,8,.09,'click',.25),...R(2.4,12,.1,'tick',.14),
+  [3.62,'impact',.55],[3.6,'swipe',.3],[4.7,'whoosh_long',.5],[5.6,'whoosh',.35],[6.9,'riser',.3],[8.4,'impact',.6],
+  [10.0,'whoosh',.45],[11.0,'impact',.45],[11.35,'glitch',.22],[13.5,'whoosh_long',.45],[14.2,'whoosh',.4],
+  ...[15.3,16.0,16.7,17.3].map(t=>[t,'bubble',.35]),...R(15.2,12,.3,'tick',.1),
+  [17.9,'swipe',.35],[18.7,'swipe',.35],[20.0,'whoosh_long',.45],[21.6,'send',.35],[24.6,'impact',.55],[26.1,'glitch',.3],
+  [26.8,'whoosh',.45],[29.3,'whoosh',.4],[30.0,'send',.3],[30.6,'bubble',.35],[30.9,'ding',.3],[31.5,'send',.3],[32.0,'bubble',.35],
+  ...PT.map(t=>[t,'swipe',.3]),[35.0,'whoosh_long',.45],...R(35.6,10,.09,'click',.18),[36.5,'pop',.45],[36.9,'pop',.45],
+  ...R(37.2,8,.2,'pop',.16),[40.1,'whoosh',.4],[40.5,'impact',.6],[43.0,'whoosh_long',.45],[43.7,'impact',.5],
+  ...[44.4,44.85,45.3].map(t=>[t,'ding',.3]),...R(45.7,11,.12,'tick',.12),[47.8,'swipe',.35],[48.2,'impact',.45],
+  [50.0,'glitch',.3],[51.6,'glitch',.18],[52.3,'whoosh',.45],[52.7,'impact',.65],...R(54.3,5,.18,'click',.25),[56.25,'click',.35],[56.3,'send',.45]];
+
+window.render=t=>{
+  for(const{el,kf}of tracks){const v={};for(const p of P)v[p]=val(kf,t,p);
+    el.style.opacity=v.o;el.style.transform=`translate(${v.x}px,${v.y}px) perspective(1600px) rotateX(${v.rx}deg) rotateY(${v.ry}deg) rotate(${v.r}deg) scale(${v.s})`;
+    el.style.filter=v.b>0.05?`blur(${v.b}px)`:'';el.style.visibility=v.o<0.003?'hidden':'visible'}
+  for(const f of fns)f(t);
+};
+render(0);
+</script>
+</body></html>
